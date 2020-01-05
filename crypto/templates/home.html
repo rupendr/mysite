@@ -1,0 +1,55 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1 class="display-4">Shigas Crypto News</h1>
+    <p class="lead">cryptocurrency- digital currency,current rates,bitcoin price</p>
+    <hr class="my-4">
+    <p>crypto currency is digital currency.</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="https://min-api.cryptocompare.com/" role="button">Learn more</a>
+    </p>
+</div>
+<br/>
+<table class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Current value</th>
+            <th scope="col">Low 24 hours</th>
+            <th scope="col">Market cap</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for key,value in price.DISPLAY.items %}
+        <tr>
+            <th scope="row">{{key}}</th>
+            <td>{{value.INR.PRICE}}</td>
+            <td>{{value.INR.LOW24HOUR}}</td>
+            <td>{{value.INR.MKTCAP}}</td>
+        </tr>
+
+        {%endfor%}
+    </tbody>
+</table>
+
+
+<div class="container">
+    <div class="row">
+        {% for x in api.Data %}
+        <div class="card" style="width: 18rem;">
+
+            <img src="{{x.imageurl}}" class="card-img-top" alt="{{x.tag}}">
+            <div class="card-body">
+                <h5 class="card-title">{{x.title}}</h5>
+                <p class="card-text" >{{x.body}}</p>
+                <a href="{{x.url}}" class="btn btn-primary">Readmore</a>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
